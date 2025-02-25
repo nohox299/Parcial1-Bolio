@@ -1,0 +1,18 @@
+networks:
+  my-network2:
+
+services:
+  appordinario:
+    container_name: appordinario
+    build: .
+    restart: always
+    ports:
+      - 3002:3000
+    volumes:
+      - ./appordinario:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/.next
+    command: >
+      sh -c "npm install && npm run dev"
+    networks:
+      - my-network2
